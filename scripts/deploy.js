@@ -1,17 +1,17 @@
 const main = async () => {
-    // const [owner] = await hre.ethers.getSigners();
-    // console.log('address: ', owner.address)
 
     const nftContractFactory = await hre.ethers.getContractFactory('MyNFT')
     const nftContract = await nftContractFactory.deploy()
     await nftContract.deployed()
-    console.log('Contract deployed to: ', nftContract.address)
+    console.log('Contract deployed to:', nftContract.address)
     
-    let txn = await nftContract.makeAnEpicNFT()
+    let txn = await nftContract.makeAnEpicNFT("https://jsonkeeper.com/b/QNSX")
     await txn.wait()
+    console.log("Minted NFT #1")
 
-    txn = await nftContract.makeAnEpicNFT()
+    txn = await nftContract.makeAnEpicNFT("https://jsonkeeper.com/b/GTUH")
     await txn.wait()
+    console.log("Minted NFT #2")
 }
 
 const runMain = async () => {
